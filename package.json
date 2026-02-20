@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "A boilerplate starter for creating a package using the Liferay Editor Custom Fields framework",
   "dependencies": {
-    "@liferay-editor-custom-fields/framework": "~7.4.0"
+    "@liferay-editor-custom-fields/framework": "^74.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
@@ -28,5 +28,5 @@
     "start": "webpack serve",
     "watch": "tsc --watch"
   },
-  "version": "7.4.0"
+  "version": "74.0.0"
 }
