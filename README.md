@@ -1,34 +1,48 @@
-# Liferay Custom Fields Sample
+# Liferay Custom Fields - Sample App Boilerplate
 
-A Boilerplate starter for a Liferay Editor Custom Fields app
+A description of what your app does goes here, as well as a few screenshots
 
-## Before You Start
+## Supported Liferay Versions
 
-Any client extension using this framework should not run on a production or pre-prod staging environment. It is only intended for the fragment and web content editors. Any JS that will end up on the page should be elsewhere, either in a separate client extension or in the fragment/web content template.
+This app supports DXP versions in their premium support phase at the time of this release.
 
-If you are creating/appending DOM elements, make sure that you check for an existing element to avoid infinite MutationObserver loops.
+- 2025 Q4
+- 2025 Q3
+- 2025 Q2
+- 2025 Q1
+- 2024 Q1
+- 7.4
+
+If you need compatibility for older DXP releases, you can create a legacy version with a year that supports the release, and submit a PR.
 
 ## Getting Started
 
-See below for available events and helper functions
+This is meant to be imported into a client extension.
 
-## Events
+- If you don't have the custom fields client extension yet, here's how to get it:
+  - In a terminal, navigate to your Liferay workspace's _client-extensions_ folder
+  - Clone the client extension into your folder using `git clone git@github.com:lbeharxtivia/liferay-editor-custom-fields-client-extension.git`
+  - Run `blade gw clean deploy` to deploy your new client extension
+- Go to your custom fields client extension folder in terminal
+- Install the module `yarn add @liferay-editor-custom-fields/sample^74.0.0`
+- Import and call the init function in src/index.ts
 
-Use Liferay.on to subscribe to these events:
+```
+import initSample from '@liferay-editor-custom-fields/sample';
 
-- `EditorCustomFields_WebContentFields_OnLoad` - Fires when web content field DOM is loaded.
-- `EditorCustomFields_FragmenConfig_OnLoad` - Fires when a new Fragment config is loaded on the right pane of a page editor.
-- `EditorCustomFields_Image_OnChange` - Fires when an lfr-editable image or Web Content image is changed.
+initSample();
+```
 
-## Helper functions
+## Dev instructions
 
-The helper functions below are available for import in any file. For example, to use the getFieldByLabel helper you would use `import { getFieldByLabel } from "@liferay-editor-custom-fields/framework";`
-
-- `debounce(callback:function, wait:number)` - A simple callback function
-- `getContentImageInput(label:string)` - Gets the metadata input field associated with the web content image.
-- `getFieldByLabel(label:string)` - Uses Xpath to get an input field by its label. Usually used to append a GUI element.
-- `getPreviewImage()` - Gets the preview Image
-- `setReactDomInputValue({fieldEl:element,value:string})` - Sets React DOM input value and triggers an autosave on fragment config
+- Read the [framework readme](https://github.com/lbeharxtivia/liferay-editor-custom-fields-framework/blob/main/README.md) for events and helper functions
+- App should be inert outside of editor
+  - If you need JS to run on the page, add it to the fragment or web content template instead.
+- Any changes should be limited to non-destructive DOM Manipulation and use OOB Liferay Editor functionality.
+- Keep changes as simple as possible! Avoid things like LR Objects in favor of structured web content fields, fragment config, etc.
+- If companion Liferay content is required:
+  - Stay transparent. Avoid LARs and use ftl, json, etc.
+  - Put content in /docs
 
 ## License
 
